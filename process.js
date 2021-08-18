@@ -1,4 +1,13 @@
 
+const handleLocal = document.getElementById("balance-field");
+if(typeof(Storage)==undefined){
+    localStorage.setItem("totalBalance", "00")
+    handleLocal.innerHTML = localStorage.getItem("totalBalance");
+}
+else{
+    handleLocal.innerHTML = localStorage.getItem("totalBalance");
+}
+
 // cash in button on click part
 document.getElementById("cash-in-btn").addEventListener('click', function(){
     // calculation of cash in part 
@@ -21,6 +30,7 @@ document.getElementById("cash-in-btn").addEventListener('click', function(){
         const parseBalanceSCR = parseFloat(balanceSCR.innerText);
 
         balanceSCR.innerHTML = parseBalanceSCR + parseCashAmount;
+        localStorage.setItem("totalBalance", balanceSCR.innerText);
     }
     else{
         const warning = document.getElementById("warning");
@@ -64,6 +74,7 @@ document.getElementById("buy-btn").addEventListener('click', function(){
 
         // menaging the balance part
         totalBalanceSCR.innerHTML = parsetotalBalanceSCR -  multiplyBoth;
+        localStorage.setItem("totalBalance", totalBalanceSCR.innerText);
     }
     else{
         const warning = document.getElementById("warning-buy");
