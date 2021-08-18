@@ -5,18 +5,30 @@ document.getElementById("cash-in-btn").addEventListener('click', function(){
     const cashInputAmount = document.getElementById("cash-in-inpt");
     const parseCashAmount = parseFloat(cashInputAmount.value);
 
-    const cashAmountSCR = document.getElementById("cash-in-field");
-    const parseCashAmountSCR = parseFloat(cashAmountSCR.innerText);
+    if(parseCashAmount > 0){
+        const warning = document.getElementById("warning");
+        warning.style.display = "none";
 
-    cashAmountSCR.innerHTML= parseCashAmount + parseCashAmountSCR;
-    // clear input field
-    cashInputAmount.value = "";
+        const cashAmountSCR = document.getElementById("cash-in-field");
+        const parseCashAmountSCR = parseFloat(cashAmountSCR.innerText);
 
-    // calculation of balance part 
-    const balanceSCR = document.getElementById("balance-field");
-    const parseBalanceSCR = parseFloat(balanceSCR.innerText);
+        cashAmountSCR.innerHTML= parseCashAmount + parseCashAmountSCR;
+        // clear input field
+        cashInputAmount.value = "";
 
-    balanceSCR.innerHTML = parseBalanceSCR + parseCashAmount;
+        // calculation of balance part 
+        const balanceSCR = document.getElementById("balance-field");
+        const parseBalanceSCR = parseFloat(balanceSCR.innerText);
+
+        balanceSCR.innerHTML = parseBalanceSCR + parseCashAmount;
+    }
+    else{
+        const warning = document.getElementById("warning");
+        console.log("vaijan")
+        warning.style.display = "block"
+    }
+
+    
 })
 
 // buy button on click part
@@ -32,17 +44,29 @@ document.getElementById("buy-btn").addEventListener('click', function(){
 
     const multiplyBoth = parseBookNo * parseBookPrice;
 
-    const cashOutSCR = document.getElementById("cash-out-field");
-    const parseCashOutSCR = parseFloat(cashOutSCR.innerText);
-
-    cashOutSCR.innerHTML = parseCashOutSCR + multiplyBoth;
-
-    // clear both input field
-    bookNo.value = "";
-    bookPrice.value = "";
-
-    // menaging the balance part
     const totalBalanceSCR = document.getElementById("balance-field");
     const parsetotalBalanceSCR = parseFloat(totalBalanceSCR.innerText);
-    totalBalanceSCR.innerHTML = parsetotalBalanceSCR -  multiplyBoth;
+
+    // console.log(multiplyBoth, parseCashOutSCR);
+    if(parseBookNo > 0 && parseBookPrice > 0 && multiplyBoth < parsetotalBalanceSCR){
+
+        const warning = document.getElementById("warning-buy");
+        warning.style.display = "none"
+
+        const cashOutSCR = document.getElementById("cash-out-field");
+        const parseCashOutSCR = parseFloat(cashOutSCR.innerText);
+
+        cashOutSCR.innerHTML = parseCashOutSCR + multiplyBoth;
+
+        // clear both input field
+        bookNo.value = "";
+        bookPrice.value = "";
+
+        // menaging the balance part
+        totalBalanceSCR.innerHTML = parsetotalBalanceSCR -  multiplyBoth;
+    }
+    else{
+        const warning = document.getElementById("warning-buy");
+        warning.style.display = "block"
+    }
 })
