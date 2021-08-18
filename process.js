@@ -34,11 +34,8 @@ document.getElementById("cash-in-btn").addEventListener('click', function(){
     }
     else{
         const warning = document.getElementById("warning");
-        console.log("vaijan")
         warning.style.display = "block"
     }
-
-    
 })
 
 // buy button on click part
@@ -57,7 +54,6 @@ document.getElementById("buy-btn").addEventListener('click', function(){
     const totalBalanceSCR = document.getElementById("balance-field");
     const parsetotalBalanceSCR = parseFloat(totalBalanceSCR.innerText);
 
-    // console.log(multiplyBoth, parseCashOutSCR);
     if(parseBookNo > 0 && parseBookPrice > 0 && multiplyBoth < parsetotalBalanceSCR){
 
         const warning = document.getElementById("warning-buy");
